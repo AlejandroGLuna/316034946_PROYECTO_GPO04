@@ -1,42 +1,13 @@
-newmtl Bed:Bed
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.40 0.40 0.40
-Tf 1.00 1.00 1.00
-map_Kd rosa.jpg
-Ni 1.00
-Ks 1.00 1.00 1.00
-Ns 100.00
-newmtl Bed:Pillow
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.40 0.40 0.40
-Tf 1.00 1.00 1.00
-map_Kd blanco.jpg
-Ni 1.00
-Ks 1.00 1.00 1.00
-Ns 100.00
-newmtl TropicalFish01:___Default
+newmtl phong2SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd TropicalFish01.jpg
-map_Ka TropicalFish01.jpg
-Ni 1.50
+map_Kd Madera02_Tablones.jpg
+Ni 1.00
 Ks 0.00 0.00 0.00
-Ns 10.00
-newmtl TropicalFish03:___Default
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd TropicalFish03.jpg
-map_Ka TropicalFish03.jpg
-Ni 1.50
-Ks 0.00 0.00 0.00
-Ns 10.00
-newmtl kitchen_chair_obj:wood_planks_a
+Ns 18.00
+newmtl silla:wood_planks_a
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -45,28 +16,3 @@ map_Kd cafe.jpg
 Ni 1.50
 Ks 0.00 0.00 0.00
 Ns 10.00
-newmtl kitchen_chair_obj1:wood_planks_a
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.50
-Ks 0.00 0.00 0.00
-Ns 10.00
-newmtl kitchen_chair_obj2:wood_planks_a
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.50
-Ks 0.00 0.00 0.00
-Ns 10.00
-newmtl phong3SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd cobijap.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00

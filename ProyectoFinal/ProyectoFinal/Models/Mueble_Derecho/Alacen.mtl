@@ -1,8 +1,53 @@
-newmtl Alacen:initialShadingGroup
+newmtl AlacenTexturas:initialShadingGroup2
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl AlacenTexturas:phong3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd PapelViejo.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl AlacenTexturas:phong4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd canyon_brown_2x3m_color.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl AlacenTexturas:phong5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Madera_Clara.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl AlacenTexturas:phong6SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd WornMetalFree.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl AlacenTexturas:phong7SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Crate.jpg
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
