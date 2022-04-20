@@ -1,13 +1,4 @@
-newmtl Fachada:Fachada:phong7SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd wooden_floorboards_seamless.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Fachada:initialShadingGroup
+newmtl Fachada2:initialShadingGroup
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
@@ -15,7 +6,7 @@ Tf 1.00 1.00 1.00
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:initialShadingGroup2
+newmtl Fachada2:initialShadingGroup2
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
@@ -23,7 +14,7 @@ Tf 1.00 1.00 1.00
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:initialShadingGroup4
+newmtl Fachada2:initialShadingGroup5
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
@@ -31,7 +22,7 @@ Tf 1.00 1.00 1.00
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:phong1SG
+newmtl Fachada2:phong1SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -40,7 +31,7 @@ map_Kd canyon_brown_2x3m_color.png
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:phong2SG
+newmtl Fachada2:phong2SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -49,7 +40,7 @@ map_Kd Redbrick.jpg
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:phong3SG
+newmtl Fachada2:phong3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -58,7 +49,16 @@ map_Kd roof-tile-background-vector.jpg
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:phong4SG
+newmtl Fachada2:phong3SG2
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Wood_Shutter1.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl Fachada2:phong4SG
 illum 4
 Kd 0.46 0.17 0.17
 Ka 0.00 0.00 0.00
@@ -66,7 +66,7 @@ Tf 1.00 1.00 1.00
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:phong5SG
+newmtl Fachada2:phong5SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -75,7 +75,7 @@ map_Kd Concrete.png
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:phong6SG
+newmtl Fachada2:phong6SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -84,7 +84,16 @@ map_Kd Cristal.png
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl Fachada:phong7SG
+newmtl Fachada2:phong7SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd wooden_floorboards_seamless.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl Fachada2:phong7SG2
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
