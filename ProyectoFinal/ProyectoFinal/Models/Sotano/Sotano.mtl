@@ -1,4 +1,4 @@
-newmtl phong2SG
+newmtl Sotano:phong2SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -7,7 +7,7 @@ map_Kd Bricks_Olg.png
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl phong3SG
+newmtl Sotano:phong3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -16,7 +16,7 @@ map_Kd wooden_floorboards_seamless.jpg
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl phong4SG
+newmtl Sotano:phong4SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -25,7 +25,7 @@ map_Kd Wood_floor_basement.jpg
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl phong5SG
+newmtl Sotano:phong5SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
