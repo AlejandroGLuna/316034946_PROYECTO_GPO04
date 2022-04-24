@@ -167,6 +167,7 @@ int main( )
     Model repisas((char*)"Models/Mueble_Izquierdo/Repisas.obj");
     Model silla((char*)"Models/Silla/silla.obj");
     Model sotano((char*)"Models/Sotano/Sotano.obj");
+    Model ventanas((char*)"Models/Fachada/Ventanas.obj");
 
     // First, set the container's VAO (and VBO)
     GLuint VBO, VAO;
@@ -265,8 +266,6 @@ int main( )
 
         view = camera.GetViewMatrix();
 
-        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
-
         glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
 
         //Escritorio
@@ -335,6 +334,19 @@ int main( )
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         fachada.Draw(lightingShader);
 
+        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        //Ventanas
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.5);
+        ventanas.Draw(lightingShader);
+
+        glDisable(GL_BLEND);  //Desactiva el canal alfa 
+
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
+
         //Pasillo
         model = glm::translate(model, glm::vec3(5.0f, -6.4f, -7.2f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -347,8 +359,6 @@ int main( )
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         sotano.Draw(lightingShader);
-
-        glDisable(GL_BLEND);  //Desactiva el canal alfa 
 
         glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
 
