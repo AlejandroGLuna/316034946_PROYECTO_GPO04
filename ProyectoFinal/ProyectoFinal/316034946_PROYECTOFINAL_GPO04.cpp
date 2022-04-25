@@ -47,7 +47,7 @@ glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 
 // Positions of the point lights
 glm::vec3 pointLightPositions[] = {
-    glm::vec3(11.6f, 14.2f, 1.7f),
+    glm::vec3(37.5f, 6.7f, -0.2f),
     glm::vec3(0.0f, 15.0f, 20.0f)
 };
 
@@ -163,7 +163,9 @@ int main( )
     Model escalera((char*)"Models/Escalera/Escalera.obj");
     Model fachada((char*)"Models/Fachada/Fachada.obj");
     Model lampara((char*)"Models/Lampara/lampara_techo.obj");
+    Model lampara_cristal((char*)"Models/Lampara/cristal.obj");
     Model pasillo((char*)"Models/Pasadizo/Corredor.obj");
+    Model pasto((char*)"Models/Pasto/Pasto.obj");
     Model repisas((char*)"Models/Mueble_Izquierdo/Repisas.obj");
     Model silla((char*)"Models/Silla/silla.obj");
     Model sotano((char*)"Models/Sotano/Sotano.obj");
@@ -219,8 +221,8 @@ int main( )
 
         // Directional light
         glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.direction"), -0.2f, -1.0f, -0.3f); //Direccion de la luz
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.3f, 0.3f, 0.3f);
-        glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.5f, 0.5f, 0.5f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.ambient"), 0.2f, 0.2f, 0.2f);
+        glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "dirLight.specular"), 1.0f, 1.0f, 1.0f);
 
         glm::vec3 lightColor1, lightColor2, lightColor3, lightColor4;
@@ -270,15 +272,13 @@ int main( )
 
         //Escritorio
         model = glm::mat4(1);
-        //model = glm::rotate(model, glm::radians(-rot), glm::vec3(0.0f, 1.0f, 0.0f));
-        model = glm::translate(model, glm::vec3(26.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(26.0f, -6.9f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         escritorio.Draw(lightingShader);
 
         //Silla
-        model = glm::mat4(1);
-        model = glm::translate(model, glm::vec3(22.0f, 0.0f, 0.0f));
+        model = glm::translate(model, glm::vec3(-4.0f, 0.3f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         silla.Draw(lightingShader);
@@ -292,44 +292,52 @@ int main( )
 
         //Primer Alacen
         model = glm::translate(model, glm::vec3(-10.0f, 0.0f, 0.0f));
-        model = glm::scale(model, glm::vec3(1.8f, 1.8f, 1.8f));
         model = glm::rotate(model, glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         alacen.Draw(lightingShader);
 
         //Segundo Alacen
-        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -5.1f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, -9.1f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         alacen.Draw(lightingShader);
 
         //Escalerita
-        model = glm::translate(model, glm::vec3(4.0f, 0.0f, 2.0f));
-        model = glm::scale(model, glm::vec3(1.5f, 1.5f, 1.5f));
+        model = glm::translate(model, glm::vec3(7.0f, 0.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         escalera.Draw(lightingShader);
 
         //Cajas con pergaminos
-        model = glm::translate(model, glm::vec3(6.0f, 0.0f, -2.0f));
-        model = glm::scale(model, glm::vec3(0.3f, 0.3f, 0.3f));
+        model = glm::translate(model, glm::vec3(12.0f, 0.0f, 0.0f));
         model = glm::rotate(model, glm::radians(-30.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         cajas.Draw(lightingShader);
 
         //Lampara
-        model = glm::translate(model, glm::vec3(0.0f, 15.0f, 8.0f));
-        model = glm::scale(model, glm::vec3(0.4f, 0.4f, 0.4f));
+        model = glm::translate(model, glm::vec3(2.0f, 11.0f, 10.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         lampara.Draw(lightingShader);
 
+        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        //Cristal de la lampara
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 0.6);
+        lampara_cristal.Draw(lightingShader);
+
+        glDisable(GL_BLEND);  //Desactiva el canal alfa 
+
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
+
         //Fachada
         model = glm::mat4(1);
         model = glm::translate(model, glm::vec3(15.0f, 12.8f, 50.0f));
-        model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         fachada.Draw(lightingShader);
@@ -347,15 +355,20 @@ int main( )
 
         glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
 
+        //Pasto
+        model = glm::translate(model, glm::vec3(0.0f, -0.5f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        pasto.Draw(lightingShader);
+
         //Pasillo
-        model = glm::translate(model, glm::vec3(5.0f, -6.4f, -7.2f));
+        model = glm::translate(model, glm::vec3(10.0f, -18.75f, -16.7f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         pasillo.Draw(lightingShader);
 
         //Sotano
-        model = glm::translate(model, glm::vec3(0.0f, 0.3f, -19.2f));
-        model = glm::scale(model, glm::vec3(0.75f, 0.75f, 0.75f));
+        model = glm::translate(model, glm::vec3(0.0f, -0.15f, -38.6f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         sotano.Draw(lightingShader);
