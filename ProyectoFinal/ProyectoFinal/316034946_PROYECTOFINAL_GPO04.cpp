@@ -34,7 +34,6 @@ void KeyCallback( GLFWwindow *window, int key, int scancode, int action, int mod
 void MouseCallback( GLFWwindow *window, double xPos, double yPos );
 void DoMovement( );
 
-
 // Camera
 Camera camera( glm::vec3( 60.0f, 30.0f, 40.0f ) );
 GLfloat lastX = WIDTH / 2.0;
@@ -58,9 +57,28 @@ glm::vec3 Light2 = glm::vec3(1.0f, 1.0f, 1.0f);
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
-float rot = 0.0f;
-bool anim = false;
-bool regreso = true;
+// Animacion Sencilla Puerta Principal
+float rot_PP = 0.0f;
+bool anim_PP = false;
+short regreso_PP = 0;
+
+// Animacion Sencilla Puerta Cobertizo
+float rot_PC = 0.0f;
+bool anim_PC = false;
+bool regreso_PC = false;
+
+// Animacion Sencilla Puerta Sotano
+float rot_PS = 0.0f;
+bool anim_PS = false;
+short regreso_PS = 0;
+
+// Animacion Sencilla Cajones Escritorio
+bool anim_C = false;
+bool regreso_C = false;
+float tras_caj1 = 0.0f;
+float tras_caj2 = 0.0f;
+float tras_caj3 = 0.0f;
+float tras_caj4 = 0.0f;
 
 //Es importante considerar el sentido de dibujo, debido a la normal de la imagen
 float vertices[] = {
@@ -160,8 +178,13 @@ int main( )
     Model alacen((char*)"Models/Mueble_Derecho/Alacen.obj");
     Model cajas((char*)"Models/Cajas/Cajas_Pergaminos.obj");
     Model escritorio((char*)"Models/Escritorio/Escritorio.obj");
+    Model escritorio_cajonChico((char*)"Models/Escritorio/Cajon.obj");
+    Model escritorio_cajonGrande((char*)"Models/Escritorio/CajonGrande.obj");
     Model escalera((char*)"Models/Escalera/Escalera.obj");
     Model fachada((char*)"Models/Fachada/Fachada.obj");
+    Model fachada_puertaPrincipal((char*)"Models/Fachada/Puerta_Principal.obj");
+    Model fachada_puertaSotano((char*)"Models/Fachada/Puerta_Sotano.obj");
+    Model fachada_ventanas((char*)"Models/Fachada/Ventanas.obj");
     Model lampara((char*)"Models/Lampara/lampara_techo.obj");
     Model lampara_cristal((char*)"Models/Lampara/cristal.obj");
     Model pasillo((char*)"Models/Pasadizo/Corredor.obj");
@@ -169,7 +192,7 @@ int main( )
     Model repisas((char*)"Models/Mueble_Izquierdo/Repisas.obj");
     Model silla((char*)"Models/Silla/silla.obj");
     Model sotano((char*)"Models/Sotano/Sotano.obj");
-    Model ventanas((char*)"Models/Fachada/Ventanas.obj");
+    Model sotano_puerta((char*)"Models/Sotano/Puerta_Sotano.obj");
 
     // First, set the container's VAO (and VBO)
     GLuint VBO, VAO;
@@ -277,14 +300,43 @@ int main( )
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         escritorio.Draw(lightingShader);
 
+        // Primer Cajon del Escritorio
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(27.48f+tras_caj1, -3.195f, 4.544f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        escritorio_cajonChico.Draw(lightingShader);
+
+        // Segundo Cajon del Escritorio
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(27.48f + tras_caj2, -4.288f, 4.544f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        escritorio_cajonGrande.Draw(lightingShader);
+
+        // Tercer Cajon del Escritorio
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(27.48f + tras_caj3, -5.399f, 4.544f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        escritorio_cajonGrande.Draw(lightingShader);
+        
+        // Cuarto Cajon del Escritorio
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(27.48f + tras_caj4, -6.518f, 4.544f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        escritorio_cajonGrande.Draw(lightingShader);
+
         //Silla
-        model = glm::translate(model, glm::vec3(-4.0f, 0.3f, 0.0f));
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(22.5f, -6.6f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         silla.Draw(lightingShader);
 
         //Repisas
-        model = glm::translate(model, glm::vec3(6.0f, 0.25f, -16.0f));
+        model = glm::translate(model, glm::vec3(5.5f, 0.25f, -16.0f));
         model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
@@ -345,18 +397,34 @@ int main( )
         glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        //Ventanas
+        // Ventanas de la Fachada
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
         glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.5);
-        ventanas.Draw(lightingShader);
+        fachada_ventanas.Draw(lightingShader);
 
         glDisable(GL_BLEND);  //Desactiva el canal alfa 
 
         glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
 
+        // Puerta Principal de la Fachada
+        model = glm::translate(model, glm::vec3(16.632f, 0.79f, 3.876f));
+        model = glm::rotate(model, glm::radians(rot_PP), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        fachada_puertaPrincipal.Draw(lightingShader);
+
+        // Puerta Cobertizo de la Fachada
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(29.082f, 12.8f, 37.668f));
+        model = glm::rotate(model, glm::radians(rot_PC), glm::vec3(0.0f, 0.0f, 1.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        fachada_puertaSotano.Draw(lightingShader);
+
         //Pasto
-        model = glm::translate(model, glm::vec3(0.0f, -0.5f, 0.0f));
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(15.0f, 12.3f, 50.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         pasto.Draw(lightingShader);
@@ -373,7 +441,12 @@ int main( )
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         sotano.Draw(lightingShader);
 
-        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
+        // Puerta del Sotano
+        model = glm::translate(model, glm::vec3(3.057f, 0.0f, 19.0111f));
+        model = glm::rotate(model, glm::radians(rot_PS), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        sotano_puerta.Draw(lightingShader);
 
         glBindVertexArray(0);
 
@@ -436,23 +509,117 @@ void DoMovement( )
         camera.ProcessKeyboard( RIGHT, deltaTime );
     }
 
-    if (anim)
+    if (anim_PP)
     {
-        if (regreso)
+        if (regreso_PP == 0)
         {
-            if (rot > 0.0f)
-                rot -= 1.0f;
+            if (rot_PP < 90.0f)
+                rot_PP += 1.0f;
             else
-                anim = false;
+                regreso_PP = 1;
+        }
+        else if (regreso_PP == 1)
+        {
+            if (rot_PP > -90.0f)
+                rot_PP -= 1.0f;
+            else
+                regreso_PP = 2;
         }
         else
         {
-            if (rot < 180.0f)
-                rot += 1.0f;
+            if (rot_PP < 0.0f)
+                rot_PP += 1.0f;
             else
-                anim = false;
+            {
+                anim_PP = false;
+                regreso_PP = 0;
+            }
         }
     }
+
+    if (anim_PC)
+    {
+        if (!regreso_PC)
+        {
+            if (rot_PC > -110.0f)
+                rot_PC -= 1.0f;
+            else
+                regreso_PC = true;
+        }
+        else
+        {
+            if (rot_PC < 0.0f)
+                rot_PC += 1.0f;
+            else
+            {
+                regreso_PC = false;
+                anim_PC = false;
+            }
+        }
+    }
+
+    if (anim_PS)
+    {
+        if (regreso_PS == 0)
+        {
+            if (rot_PS < 90.0f)
+                rot_PS += 1.0f;
+            else
+                regreso_PS = 1;
+        }
+        else if (regreso_PS == 1)
+        {
+            if (rot_PS > -90.0f)
+                rot_PS -= 1.0f;
+            else
+                regreso_PS = 2;
+        }
+        else
+        {
+            if (rot_PS < 0.0f)
+                rot_PS += 1.0f;
+            else
+            {
+                anim_PS = false;
+                regreso_PS = 0;
+            }
+        }
+    }
+
+    if (anim_C)
+    {
+        if (!regreso_C) {
+            if (tras_caj4 > -4.0f)
+                tras_caj4 -= 0.04f;
+            else if (tras_caj3 > -4.0f)
+                tras_caj3 -= 0.04f;
+            else if (tras_caj2 > -4.0f)
+                tras_caj2 -= 0.04f;
+            else if (tras_caj1 > -4.0f)
+                tras_caj1 -= 0.04f;
+            else
+                regreso_C = true;
+        }
+        else 
+        {
+            if (tras_caj1 < 0.0f)
+                tras_caj1 += 0.04f;
+            else if (tras_caj2 < 0.0f)
+                tras_caj2 += 0.04f;
+            else if (tras_caj3 < 0.0f)
+                tras_caj3 += 0.04f;
+            else if (tras_caj4 < 0.0f)
+                tras_caj4 += 0.04f;
+            else {
+                regreso_C = false;
+                anim_C = false;
+            }
+                
+        }
+        
+
+    }
+
 
 }
 
@@ -476,11 +643,17 @@ void KeyCallback( GLFWwindow *window, int key, int scancode, int action, int mod
         }
     }
 
-    if (keys[GLFW_KEY_O])
-    {
-        anim = true;
-        regreso = !regreso;
-    }
+    if (keys[GLFW_KEY_C])
+        anim_PP = !anim_PP;
+
+    if (keys[GLFW_KEY_V])
+        anim_PC = !anim_PC;
+
+    if (keys[GLFW_KEY_B])
+        anim_PS = !anim_PS;
+
+    if (keys[GLFW_KEY_N])
+        anim_C = !anim_C;
 }
 
 void MouseCallback( GLFWwindow *window, double xPos, double yPos )

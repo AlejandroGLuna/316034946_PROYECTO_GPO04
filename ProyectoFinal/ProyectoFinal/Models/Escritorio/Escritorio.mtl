@@ -1,73 +1,4 @@
-newmtl Escritorio:initialShadingGroup
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Escritorio:phong2SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd Madera02_Tablones.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Escritorio:phong2SG2
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Escritorio:phong4SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd Madera01_TablonesArriba.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Escritorio:phong5SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd Madera01_TablonesAbajo.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Escritorio:phong7SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Escritorio:phong9SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd cafe.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl Escritorio:phong10SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-map_Kd WornMetalFree.jpg
-Ni 1.00
-Ks 0.00 0.00 0.00
-Ns 18.00
-newmtl phong2SG
+newmtl Cajon5:phong2SG2
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
@@ -76,12 +7,56 @@ map_Kd Madera01_Tablones.jpg
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
-newmtl phong3SG
+newmtl Cajon5:phong3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 map_Kd WornMetalFree.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl Escritorio2:phong2SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Madera02_Tablones.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl Escritorio2:phong2SG4
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl Escritorio2:phong4SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Madera01_TablonesArriba.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl Escritorio2:phong5SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd Madera01_TablonesAbajo.jpg
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 18.00
+newmtl Escritorio2:phong9SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd cafe.jpg
 Ni 1.00
 Ks 0.00 0.00 0.00
 Ns 18.00
