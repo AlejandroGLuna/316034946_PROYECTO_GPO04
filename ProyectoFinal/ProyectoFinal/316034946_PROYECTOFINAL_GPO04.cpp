@@ -1,4 +1,4 @@
-// Std. Includes
+﻿// Std. Includes
 #include <string>
 #include <iostream>
 #include <cmath>
@@ -41,35 +41,23 @@ GLfloat lastY = HEIGHT / 2.0;
 bool keys[1024];
 bool firstMouse = true;
 
-// Light attributes
-glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
-
-// Positions of the point lights
-glm::vec3 pointLightPositions[] = {
-    glm::vec3(37.5f, 6.7f, -0.2f),
-    glm::vec3(15.0f, 32.0f, 50.0f)
-};
-
-glm::vec3 Light1 = glm::vec3(1.0f, 0.7686f, 0.0f);
-glm::vec3 Light2 = glm::vec3(1.0f, 1.0f, 1.0f);
-
 // Deltatime
 GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
 GLfloat lastFrame = 0.0f;  	// Time of last frame
 
 // Animacion Sencilla Puerta Principal
-float rot_PP = 0.0f;
 bool anim_PP = false;
+float rot_PP = 0.0f;
 short regreso_PP = 0;
 
 // Animacion Sencilla Puerta Cobertizo
-float rot_PC = 0.0f;
 bool anim_PC = false;
 bool regreso_PC = false;
+float rot_PC = 0.0f;
 
 // Animacion Sencilla Puerta Sotano
-float rot_PS = 0.0f;
 bool anim_PS = false;
+float rot_PS = 0.0f;
 short regreso_PS = 0;
 
 // Animacion Sencilla Cajones Escritorio
@@ -79,6 +67,42 @@ float tras_caj1 = 0.0f;
 float tras_caj2 = 0.0f;
 float tras_caj3 = 0.0f;
 float tras_caj4 = 0.0f;
+
+// Animacion Compleja Lampara
+bool anim_L = false;
+bool espiral = false;
+bool regreso_L = false;
+float posX = 37.5f;
+float posY = 0.0f;
+float posY2 = 0.0f;
+float posZ = 2.0f;
+float rotX = 0.0f;
+float rotX2 = 0.0f;
+float rotY = 0.0f;
+float rotZ = 0.0f;
+float theta = -15.7f;
+
+// Animacion Compleja Copa
+bool anim_T = false;
+bool regreso_T = false;
+float puntoX = 0.0f;
+float puntoY = 4.8f;
+float giroX = 0.0f;
+float giroZ = 0.0f;
+float desA = 0.0f;
+float t = 0.0f;
+
+// Light attributes
+glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
+
+// Positions of the point lights
+glm::vec3 pointLightPositions[] = {
+    glm::vec3(37.5, 7.1f, 2.0f),
+    glm::vec3(15.0f, 32.0f, 50.0f)
+};
+
+glm::vec3 Light1 = glm::vec3(1.0f, 0.7686f, 0.0f);
+glm::vec3 Light2 = glm::vec3(1.0f, 1.0f, 1.0f);
 
 //Es importante considerar el sentido de dibujo, debido a la normal de la imagen
 float vertices[] = {
@@ -180,19 +204,23 @@ int main( )
     Model escritorio((char*)"Models/Escritorio/Escritorio.obj");
     Model escritorio_cajonChico((char*)"Models/Escritorio/Cajon.obj");
     Model escritorio_cajonGrande((char*)"Models/Escritorio/CajonGrande.obj");
+    Model escritorio_copa((char*)"Models/Copa/Copa.obj");
     Model escalera((char*)"Models/Escalera/Escalera.obj");
     Model fachada((char*)"Models/Fachada/Fachada.obj");
     Model fachada_puertaPrincipal((char*)"Models/Fachada/Puerta_Principal.obj");
     Model fachada_puertaSotano((char*)"Models/Fachada/Puerta_Sotano.obj");
     Model fachada_ventanas((char*)"Models/Fachada/Ventanas.obj");
-    Model lampara((char*)"Models/Lampara/lampara_techo.obj");
+    Model lampara((char*)"Models/Lampara/lamparita.obj");
+    Model lampara_inclinada((char*)"Models/Lampara/lampara_techo_inclinada.obj");
     Model lampara_cristal((char*)"Models/Lampara/cristal.obj");
+    Model lampara_cristal_inclinada((char*)"Models/Lampara/cristal_inclinado.obj");
     Model pasillo((char*)"Models/Pasadizo/Corredor.obj");
     Model pasto((char*)"Models/Pasto/Pasto.obj");
     Model repisas((char*)"Models/Mueble_Izquierdo/Repisas.obj");
     Model silla((char*)"Models/Silla/silla.obj");
     Model sotano((char*)"Models/Sotano/Sotano.obj");
     Model sotano_puerta((char*)"Models/Sotano/Puerta_Sotano.obj");
+    Model cobweb((char*)"Models/Sotano/Cobweb.obj");
 
     // First, set the container's VAO (and VBO)
     GLuint VBO, VAO;
@@ -269,8 +297,8 @@ int main( )
         glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].diffuse"), Light2.x, Light2.y, Light2.z);
         glUniform3f(glGetUniformLocation(lightingShader.Program, "pointLights[1].specular"), 1.0f, 1.0f, 1.0f);
         glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].constant"), 1.0f);
-        glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].linear"), 0.045f);
-        glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].quadratic"), 0.0075f);
+        glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].linear"), 0.027f);
+        glUniform1f(glGetUniformLocation(lightingShader.Program, "pointLights[1].quadratic"), 0.0028f);
 
         // Set material properties
         glUniform1f(glGetUniformLocation(lightingShader.Program, "material.shininess"), 16.0f);
@@ -291,7 +319,7 @@ int main( )
 
         view = camera.GetViewMatrix();
 
-        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 
         //Escritorio
         model = glm::mat4(1);
@@ -299,6 +327,14 @@ int main( )
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         escritorio.Draw(lightingShader);
+
+        //Copa
+        model = glm::translate(model, glm::vec3(puntoX, puntoY, -2.0f));
+        model = glm::rotate(model, glm::radians(-giroZ), glm::vec3(0.0f, 0.0f, 1.0f));
+        model = glm::rotate(model, glm::radians(-giroX), glm::vec3(1.0f, 0.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+        escritorio_copa.Draw(lightingShader);
 
         // Primer Cajon del Escritorio
         model = glm::mat4(1);
@@ -368,24 +404,51 @@ int main( )
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         cajas.Draw(lightingShader);
 
-        //Lampara
-        model = glm::translate(model, glm::vec3(2.0f, 11.0f, 10.0f));
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
-        lampara.Draw(lightingShader);
+        //Lampara 
+        model = glm::mat4(1);
+        model = glm::translate(model, glm::vec3(posX, 5.0f, posZ));
+        if (espiral) 
+        {
+            model = glm::translate(model, glm::vec3(0.0f, posY2, 0.0f));
+            model = glm::rotate(model, glm::radians(-rotY), glm::vec3(0.0, 1.0f, 0.0f));
+            model = glm::rotate(model, glm::radians(-rotX2), glm::vec3(1.0, 0.0f, 0.0f));
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+            lampara_inclinada.Draw(lightingShader);
 
-        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        //Cristal de la lampara
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
-        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 0.6);
-        lampara_cristal.Draw(lightingShader);
+            //Cristal de la lampara
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+            glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.6);
+            lampara_cristal_inclinada.Draw(lightingShader);
 
-        glDisable(GL_BLEND);  //Desactiva el canal alfa 
+            glDisable(GL_BLEND);  //Desactiva el canal alfa 
+        }
+        else
+        {
+            model = glm::translate(model, glm::vec3(0.0f, posY, 0.0f));
+            model = glm::rotate(model, glm::radians(-rotX), glm::vec3(1.0, 0.0f, 0.0f));
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
+            lampara.Draw(lightingShader);
 
-        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
+
+            glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+            //Cristal de la lampara
+            glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+            glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+            glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.6);
+            lampara_cristal.Draw(lightingShader);
+
+            glDisable(GL_BLEND);  //Desactiva el canal alfa 
+        }
+
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 
         //Fachada
         model = glm::mat4(1);
@@ -405,7 +468,7 @@ int main( )
 
         glDisable(GL_BLEND);  //Desactiva el canal alfa 
 
-        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.0);
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 
         // Puerta Principal de la Fachada
         model = glm::translate(model, glm::vec3(16.632f, 0.79f, 3.876f));
@@ -441,12 +504,27 @@ int main( )
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         sotano.Draw(lightingShader);
 
+
+        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        // Telarañas
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 4.0);
+        cobweb.Draw(lightingShader);
+
+        glDisable(GL_BLEND);  //Desactiva el canal alfa 
+
+
         // Puerta del Sotano
         model = glm::translate(model, glm::vec3(3.057f, 0.0f, 19.0111f));
         model = glm::rotate(model, glm::radians(rot_PS), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 0);
         sotano_puerta.Draw(lightingShader);
+
+        
 
         glBindVertexArray(0);
 
@@ -473,8 +551,10 @@ int main( )
             model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
             glBindVertexArray(VAO);
-            glDrawArrays(GL_TRIANGLES, 0, 36);
+            if(!anim_L)
+                glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+
 
 
         // Swap the buffers
@@ -616,11 +696,116 @@ void DoMovement( )
             }
                 
         }
-        
-
     }
 
+    if (anim_L)
+    {
+        if (espiral && !regreso_L)
+        {
+            posZ = (0.1 * theta * cos(theta)) + 0.4f;
+            posX = (0.1 * theta * sin(theta)) + 37.5f;
+            theta += 0.02f;
+            rotY += 1.1428f;
 
+            if (theta >= 0.0f)
+            {
+                regreso_L = true;
+                posZ = 0.0f;
+            }
+
+            pointLightPositions[0].z = posZ*4;
+            pointLightPositions[0].x = posX;
+        }
+        else
+        {
+            if (regreso_L)
+            {
+                rotX2 -= 0.5f;
+                posZ += 0.075f;
+                posY2 += 0.01438f;
+                if (rotX2 <= -40.0f)
+                {
+                    // Volviendo a inicializar las variables
+                    anim_L = false;
+                    espiral = false;
+                    regreso_L = false;
+                    posX = 37.5f;
+                    posY = 0.0f;
+                    posY2 = 0.0f;
+                    posZ = 2.0f;
+                    rotX = 0.0f;
+                    rotX2 = 0.0f;
+                    rotY = 0.0f;
+                    theta += -15.7;
+                    pointLightPositions[0].x = 37.5f;
+                    pointLightPositions[0].y = 7.1f;
+                    pointLightPositions[0].z = 2.0f;
+                }
+                else
+                    pointLightPositions[0].z = posZ - 4.0f;
+            }
+            else
+            {
+                rotX += 0.5f;
+                posY += 0.0125f;
+                posZ += 0.05f;
+                if (posZ >= 6.0f)
+                {
+                    espiral = true;
+                    posZ = 2.0f;
+                }
+                pointLightPositions[0].z = posZ - 1.0f;
+            }
+        }
+    }
+
+    if (anim_T)
+    {
+        if (regreso_T)
+        {
+            puntoY += 0.1f;
+            puntoX -= 0.2309f;
+            giroZ += 1.875f;
+            if (puntoY >= 4.8f)
+            {
+                anim_T = false;
+                regreso_T = false;
+                puntoX = 0.0f;
+                puntoY = 4.8f;
+                giroX = 0.0f;
+                giroZ = 0.0f;
+                desA = 0.0f;
+                t = 0.0f;
+            }
+        }
+        else
+        {
+            if (puntoX <= 2.0f)
+                puntoX += 0.1f;
+            else
+            {
+                if (puntoY >= 0.4f)
+                {
+                    puntoX = 2.0f + 3.0f * t;
+                    puntoY = 4.8f - (0.96f * t * t) / 2;
+                    t += 0.05f;
+                    giroZ += 1.423f;
+                }
+                else
+                {
+                    if (giroX <= 180.0f)
+                    {
+                        if (desA <= 2.0f)
+                            desA += 0.02f;
+
+                        giroX += 2.5f - desA;
+                    }
+                    else
+                        regreso_T = true;
+                }
+            }
+        }
+    }
 }
 
 // Is called whenever a key is pressed/released via GLFW
@@ -654,6 +839,12 @@ void KeyCallback( GLFWwindow *window, int key, int scancode, int action, int mod
 
     if (keys[GLFW_KEY_N])
         anim_C = !anim_C;
+
+    if (keys[GLFW_KEY_M])
+        anim_L = !anim_L;
+
+    if (keys[GLFW_KEY_L])
+        anim_T = !anim_T;
 }
 
 void MouseCallback( GLFWwindow *window, double xPos, double yPos )
