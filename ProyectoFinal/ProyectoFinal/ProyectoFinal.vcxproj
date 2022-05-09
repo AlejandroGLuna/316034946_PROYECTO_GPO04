@@ -29,6 +29,9 @@
   <ItemGroup>
     <ClCompile Include="316034946_PROYECTOFINAL_GPO04.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Texture.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
