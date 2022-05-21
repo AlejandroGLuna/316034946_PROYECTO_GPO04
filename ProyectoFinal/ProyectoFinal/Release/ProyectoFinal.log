@@ -1,12 +1,25 @@
-﻿soil2-debug.lib(SOIL2.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
+﻿  316034946_PROYECTOFINAL_GPO04.cpp
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(340,30): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(538,103): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(560,103): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(653,99): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(947,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(948,47): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(983,35): warning C4305: '+=': truncation from 'double' to 'float'
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(1116,17): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(1117,17): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(1121,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(1122,21): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(1124,13): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\ProyectoFinal\316034946_PROYECTOFINAL_GPO04.cpp(1125,13): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+soil2-debug.lib(SOIL2.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  0 of 685 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 685 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
 soil2-debug.lib(etc1_utils.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(etc1_utils.obj)' or at 'D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\Release\soil2-debug.pdb'; linking object as if no debug info
 soil2-debug.lib(image_DXT.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_DXT.obj)' or at 'D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\Release\soil2-debug.pdb'; linking object as if no debug info
 soil2-debug.lib(image_helper.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(image_helper.obj)' or at 'D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\Release\soil2-debug.pdb'; linking object as if no debug info
-soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'soil2-debug.lib(SOIL2.obj)' or at 'D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\Release\soil2-debug.pdb'; linking object as if no debug info
+soil2-debug.lib(SOIL2.obj) : warning LNK4099: PDB '' was not found with 'soil2-debug.lib(SOIL2.obj)' or at ''; linking object as if no debug info
   ProyectoFinal.vcxproj -> D:\OneDrive\Universidad\Semestres\Octavo semestre\Computacion Grafica\Laboratorio\Repositorio\316034946_PROYECTO_GPO04\ProyectoFinal\Release\ProyectoFinal.exe

@@ -99,7 +99,7 @@ glm::vec3 lightPos(0.0f, 0.0f, 0.0f);
 // Posiciones de las point lights
 glm::vec3 pointLightPositions[] = {
     glm::vec3(37.5, 7.1f, 2.0f),
-    glm::vec3(15.0f, 32.0f, 50.0f)
+    glm::vec3(15.0f, 29.6f, 50.0f)
 };
 
 // Colores de iluminacion de las point lights
@@ -247,7 +247,7 @@ int main( )
     Shader lampShader("Shaders/lamp.vs", "Shaders/lamp.frag");
     Shader SkyBoxshader("Shaders/SkyBox.vs", "Shaders/SkyBox.frag");
 
-    // Cargar los modelos
+    // Cargar los modelos para el primer cuarto
     Model alacen((char*)"Models/Mueble_Derecho/Alacen.obj");
     Model cajas((char*)"Models/Cajas/Cajas_Pergaminos.obj");
     Model escritorio((char*)"Models/Escritorio/Escritorio.obj");
@@ -269,6 +269,13 @@ int main( )
     Model silla((char*)"Models/Silla/silla.obj");
     Model sotano((char*)"Models/Sotano/Sotano.obj");
     Model sotano_puerta((char*)"Models/Sotano/Puerta_Sotano.obj");
+
+    //Cargar los modelos para el segundo cuarto
+    Model chimenea((char*)"Models/Chimenea/Chimenea.obj");
+    Model estantes((char*)"Models/Estantes/Estantes.obj");
+    Model mesa((char*)"Models/Mesa/Mesa.obj");
+    Model silla_comedor((char*)"Models/Silla_Comedor/Silla.obj");
+    //Se reutiliza el modelo de la lampara de techo
 
     // Variables para poder trabajar con los apuntadores
     GLuint VBO, VAO;
@@ -542,7 +549,6 @@ int main( )
             glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
             lampara.Draw(lightingShader);
 
-
             glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -563,33 +569,94 @@ int main( )
         //Fachada
         //Reinicializamos la variable model
         model = glm::mat4(1);
-        // Trasladamos la fachada  a la posicion absoluta de 15.0 en X, 12.8 en Y y 50.0 en Z
+        // Trasladamos la fachada  a la posicion absoluta de 15.0f en X, 12.8f en Y y 50.0f en Z
         model = glm::translate(model, glm::vec3(15.0f, 12.8f, 50.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         fachada.Draw(lightingShader);
 
-        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-        // Ventanas de la Fachada
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
-        // Añadimos una transparencia del 150% en el objeto.
-        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.5);
-        fachada_ventanas.Draw(lightingShader);
-
-        glDisable(GL_BLEND);  //Desactiva el canal alfa 
-
-        // Volvemos a reinicializar los valores definidos al inicio
-        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
-
         // Puerta Principal de la Fachada
-        // Trasladamos la puerta principal de la fachada a la posicion relativa de 16.632 en X, 0.79 en Y y 3.876 en Z respecto a la fachada
+        // Trasladamos la puerta principal de la fachada a la posicion relativa de 16.632f en X, 0.79f en Y y 3.876f en Z respecto a la fachada
         model = glm::translate(model, glm::vec3(16.632f, 0.79f, 3.876f));
         // Rotaremos a la puerta principal de la fachada respecto al eje Y segun lo indique la variable rot_PP
         model = glm::rotate(model, glm::radians(rot_PP), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         fachada_puertaPrincipal.Draw(lightingShader);
+
+        //Mesa
+        //Reinicializamos la variable model
+        model = glm::mat4(1);
+        //Trasladamos la mesa a la posicion abosulta de 13.715f en X, 12.8f en Y y 51.512f en Z
+        model = glm::translate(model, glm::vec3(15.715f, 12.8f, 51.512f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        mesa.Draw(lightingShader);
+
+        //Primera Silla Comedor
+        //Trasladamos la primer silla en el comedor a la posicion relativa de 4.419f en X, 0.0f en Y y 4.244f en Z respecto a la mesa
+        model = glm::translate(model, glm::vec3(4.44f, 0.0f, 2.72f));
+        //Rotaremos la silla respecto al eje Y en -10 grados
+        model = glm::rotate(model, glm::radians(-10.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        silla_comedor.Draw(lightingShader);
+
+        //Segunda Silla Comedor
+        //Trasladamos la segunda silla en el comedor a la posicion relativa de 0.184f en X, 0.0f en Y y -5.688f en Z respecto a la mesa
+        model = glm::translate(model, glm::vec3(0.184f, 0.0f, -5.688f));
+        //Rotaremos la silla respecto al eje Y en 20 grados tomando en consideracion el giro anterior, rotando realmente solo 10 grados
+        model = glm::rotate(model, glm::radians(20.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        silla_comedor.Draw(lightingShader);
+
+        //Tecer Silla Comedor
+        //Trasladamos la tercer silla en el comedor a la posicion relativa de -11.263f en X, 0.0f en Y y -0.8f en Z respecto a la mesa
+        model = glm::translate(model, glm::vec3(-11.263f, 0.0f, -0.8f));
+        //Rotaremos la silla respecto al eje Y en 170 grados para contrarestas los giros anteriores y dejarla sin rotacion alguna al otro lado de la mesa
+        model = glm::rotate(model, glm::radians(170.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        silla_comedor.Draw(lightingShader);
+
+        //Cuarta Silla Comedor
+        //Trasladamos la tercer silla en el comedor a la posicion relativa de -1.0f en X, 0.0f en Y y -5.0f en Z respecto a la mesa
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -5.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        silla_comedor.Draw(lightingShader);
+
+        //Estantes
+        //Reinicializamos la variable model
+        model = glm::mat4(1);
+        //Trasladamos la mesa a la posicion abosulta de 7.097f en X, 12.8 en Y y 34.277f en Z
+        model = glm::translate(model, glm::vec3(7.097f, 12.8f, 34.277f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        estantes.Draw(lightingShader);
+
+        //Chimenea
+        //Trasladamos la chimenea a la posicion relativa de 9.332f en X, 0.0f en Y y 0.459ff en Z respecto a los estantes
+        model = glm::translate(model, glm::vec3(9.332f, 0.0f, 0.459f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        chimenea.Draw(lightingShader);
+
+        //Lampara
+        //Reinicializamos la variable model
+        model = glm::mat4(1);
+        // Trasladamos la lampara  a la posicion absoluta de 15.0 en X, 27.583f en Y y 50.0 en Z
+        model = glm::translate(model, glm::vec3(15.0f, 27.583f, 50.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        lampara.Draw(lightingShader);
+
+        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        //Cristal de la lampara
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        // Usamos la variable activaTransparencia para que se habilite la transparencia en este objeto
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+        // Añadimos una transparencia del 60% en el objeto.
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 0.6);
+        lampara_cristal.Draw(lightingShader);
+
+        glDisable(GL_BLEND);  //Desactiva el canal alfa 
+
+        // Volvemos a reinicializar los valores definidos al inicio
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 
         // Puerta Pasillo de la Fachada
         //Reinicializamos la variable model
@@ -628,6 +695,24 @@ int main( )
         model = glm::rotate(model, glm::radians(rot_PS), glm::vec3(0.0f, 1.0f, 0.0f));
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         sotano_puerta.Draw(lightingShader);
+
+        glEnable(GL_BLEND);//Avtiva la funcionalidad para trabajar el canal alfa
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        // Ventanas de la Fachada
+        model = glm::mat4(1);
+        // Trasladamos las ventanas a la posicion absoluta de 15.0 en X, 12.8 en Y y 50.0 en Z
+        model = glm::translate(model, glm::vec3(15.0f, 12.8f, 50.0f));
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        glUniform1i(glGetUniformLocation(lightingShader.Program, "activaTransparencia"), 1);
+        // Añadimos una transparencia del 150% en el objeto.
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 0.0, 1.5);
+        fachada_ventanas.Draw(lightingShader);
+
+        glDisable(GL_BLEND);  //Desactiva el canal alfa 
+
+        // Volvemos a reinicializar los valores definidos al inicio
+        glUniform4f(glGetUniformLocation(lightingShader.Program, "colorAlpha"), 1.0, 1.0, 1.0, 1.0);
 
         // Desenlazar de memoria
         glBindVertexArray(0);

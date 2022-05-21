@@ -21659,7 +21659,7 @@ vn -1.000000 0.000000 0.000000
 vn -1.000000 0.000000 0.000000
 vn -1.000000 0.000000 0.000000
 s off
-g Fachada:Fachada:polySurface437
+g Fachada:polySurface437
 usemtl Fachada:phong5SG
 f 1/1/1 2/2/2 3/3/3
 f 3/3/4 2/2/5 4/4/6
